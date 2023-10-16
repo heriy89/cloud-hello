@@ -1,0 +1,15 @@
+steps:
+  # Run tests and save to file
+  - name: golang:1.21
+    entrypoint: /bin/bash
+    args: 
+      - -c
+      - |
+        go test -v ./...
+  # Build docker
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 
+           'gcr.io/belajargcp-396102/cloud-hello:$SHORT_SHA', '.']
+  # Docker pusth to Artifact Registry        
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/belajargcp-396102/cloud-hello:$SHORT_SHA']
