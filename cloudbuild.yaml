@@ -13,3 +13,9 @@ steps:
   # Docker pusth to Artifact Registry        
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/belajargcp-396102/cloud-hello:$SHORT_SHA']
+  # Deploy to Cloud Run in staging
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args: ['run', 'deploy', 'cloud-hello-stag', '--image', 'gcr.io/belajargcp-396102/cloud-hello:$SHORT_SHA', '--region', 'us-central1', '--platform', 'managed']
+  images:
+  - gcr.io/belajargcp-396102/cloud-hello:$SHORT_SHA
