@@ -17,5 +17,4 @@ steps:
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args: ['run', 'deploy', 'cloud-hello-stag', '--image', 'gcr.io/belajargcp-396102/cloud-hello:$SHORT_SHA', '--region', 'us-central1']
-  images:
-  - 'gcr.io/belajargcp-396102/cloud-hello:$SHORT_SHA'
+    
